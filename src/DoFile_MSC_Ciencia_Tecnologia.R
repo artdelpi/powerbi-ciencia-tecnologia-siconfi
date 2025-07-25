@@ -78,7 +78,7 @@ for (ano in ano_inicio:ano_atual) {
       if (!is.null(df)) {
         all_data[[length(all_data) + 1]] <- df
       }
-      #Sys.sleep(1) # respeita 1 requisição/segundo
+      Sys.sleep(1) # respeita 1 requisição/segundo
     }
   }
 }
@@ -109,7 +109,10 @@ df_ciencia_bimestre <- df_ciencia %>%
   group_by(exercicio, bimestre, uf, funcao, nome_funcao) %>%
   summarise(valor_total = sum(valor, na.rm = TRUE), .groups = "drop")
 
-# Exportar para CSV 
-out_file <- "C:/Users/artde/Downloads/dados_ciencia_tecnologia_bimestre_2015_hoje.csv"
-write.csv(df_ciencia_bimestre, out_file, row.names = FALSE)
-cat("Arquivo CSV gerado em:", out_file, "\n")
+# Tabela final exportada pro Power BI
+df_ciencia_bimestre
+
+# Exportar para CSV
+# out_file <- "C:/Users/artde/Downloads/dados_ciencia_tecnologia_bimestre_2015_hoje.csv"
+# write.csv(df_ciencia_bimestre, out_file, row.names = FALSE)
+# cat("Arquivo CSV gerado em:", out_file, "\n")
