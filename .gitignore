@@ -1,0 +1,12 @@
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+.Rapp.history
+*.Rproj
+*.rds
+*.xlsx
+*.log
+*.pbix
+*.pbix~*
+.vscode/
