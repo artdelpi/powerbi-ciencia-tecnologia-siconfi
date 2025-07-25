@@ -7,6 +7,4 @@
 *.rds
 *.xlsx
 *.log
-*.pbix
-*.pbix~*
 .vscode/
