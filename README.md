@@ -2,7 +2,15 @@
 
 Este projeto disponibiliza um **dashboard interativo em Power BI** para análise das **despesas da Função 19 (Ciência e Tecnologia)**, obtidas diretamente da **API do Tesouro Transparente (SICONFI)** por meio do endpoint `msc_orcamentaria`.
 
-O painel permite ver a **execução orçamentária** da Função 19 em **todos os estados da federação**, com dados consolidados **de 2015 até o ano atual**, agrupados por **bimestres**.
+O painel permite ver a **execução orçamentária** da Função 19 em **todos os estados da federação**, com dados consolidados **de 2019 até o ano atual**, agrupados por **bimestres**.
+
+---
+
+<p align="center">
+  <img src="docs/demo.png" alt="Visão geral do dashboard de Ciência e Tecnologia" width="600px">
+  <br>
+  <em>Figura 1 – Visão geral do painel interativo em Power BI.</em>
+</p>
 
 ---
 
@@ -19,7 +27,7 @@ O painel permite ver a **execução orçamentária** da Função 19 em **todos o
 
 Os dados são extraídos da API do SICONFI utilizando os seguintes parâmetros obrigatórios:
 - **`id_ente`**: Código IBGE do estado (ex: 33 = Rio de Janeiro);
-- **`an_referencia`**: Ano de referência (2015 até o atual);
+- **`an_referencia`**: Ano de referência (2019 até o atual);
 - **`me_referencia`**: Mês (1 a 12);
 - **`co_tipo_matriz`**: `MSCC` (matriz mensal agregada);
 - **`classe_conta`**: 6 (Execução Orçamentária);
@@ -27,7 +35,7 @@ Os dados são extraídos da API do SICONFI utilizando os seguintes parâmetros o
 
 
 O script em R percorre automaticamente:
-- Todos os anos de 2015 até o ano atual;
+- Todos os anos de 2019 até o ano atual;
 - Todos os 12 meses do ano, organizado em **6 bimestres**;
 - Todos os 27 entes federativos (estados + Distrito Federal).
 
