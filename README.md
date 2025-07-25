@@ -1,15 +1,19 @@
-# Painel MSC – Análise de Ciência e Tecnologia (Função 19)
+# Painel MSC – Análise de Ciência e Tecnologia (Função 19) e Produção Científica
 
-Este projeto disponibiliza um **dashboard interativo em Power BI** para análise das **despesas da Função 19 (Ciência e Tecnologia)**, obtidas diretamente da **API do Tesouro Transparente (SICONFI)** por meio do endpoint `msc_orcamentaria`.
+Este projeto disponibiliza um **dashboard interativo em Power BI** para análise das **despesas da Função 19 (Ciência e Tecnologia)**, obtidas diretamente da **API do Tesouro Transparente (SICONFI)** por meio do endpoint `msc_orcamentaria`.  
+Além disso, foram integrados **dados de produção científica** obtidos da **API OpenAlex**, possibilitando **correlacionar investimentos públicos com a produção acadêmica (número de artigos científicos) por estado e por ano**.
 
-O painel permite ver a **execução orçamentária** da Função 19 em **todos os estados da federação**, com dados consolidados **de 2019 até o ano atual**, agrupados por **bimestres**.
+O painel permite:
+- Visualizar a **execução orçamentária** da Função 19 em todos os estados da federação, com dados **de 2019 até o ano atual**.
+- Analisar a **produção científica** (artigos de periódicos revisados por pares) das **Top 57 universidades do Brasil** segundo o ranking **CWUR**, distribuída por estado e ao longo do tempo.
+- Identificar tendências e correlações entre **gastos públicos** e **número de publicações**.
 
 ---
 
 <p align="center">
   <img src="docs/demo.png" alt="Visão geral do dashboard de Ciência e Tecnologia" width="600px">
   <br>
-  <em>Figura 1 – Visão geral do painel interativo em Power BI.</em>
+  <em>Figura 1 – Painel interativo em Power BI com dados de despesas e produção científica por estado.</em>
 </p>
 
 ---
@@ -17,48 +21,78 @@ O painel permite ver a **execução orçamentária** da Função 19 em **todos o
 ## Destaques do Painel
 
 - **Ciência e Tecnologia:** análise exclusiva dos gastos públicos classificados como Função 19, conforme a Classificação Funcional do **MTO 2026**.  
-- **Comparativo entre Estados:** visualização e ranking de despesas entre todos os entes federativos.  
-- **Série Histórica (2015–Atual):** evolução dos gastos por bimestre e por ano, com indicadores de tendência.  
-- **Mapa Interativo:** visão geográfica das despesas por UF.
+- **Produção Científica:** número de artigos publicados em periódicos (2019–Atual) das **Top 57 universidades brasileiras (CWUR)**.  
+- **Comparativo entre Estados:** visualização e ranking de despesas e produção acadêmica.  
+- **Correlação Investimento × Produção:** análise dos dados orçamentários com a produção científica anual por estado.  
+- **Série Histórica (2019–Atual):** evolução dos indicadores em linha do tempo.  
+- **Mapa Interativo:** visão geográfica das despesas e da quantidade de artigos.
 
 ---
 
 ## Coleta de Dados
 
-Os dados são extraídos da API do SICONFI utilizando os seguintes parâmetros obrigatórios:
-- **`id_ente`**: Código IBGE do estado (ex: 33 = Rio de Janeiro);
-- **`an_referencia`**: Ano de referência (2019 até o atual);
-- **`me_referencia`**: Mês (1 a 12);
-- **`co_tipo_matriz`**: `MSCC` (matriz mensal agregada);
-- **`classe_conta`**: 6 (Execução Orçamentária);
-- **`id_tv`**: `period_change` (movimento do período).
+### **Despesas Públicas (SICONFI)**
+- **Endpoint:** `msc_orcamentaria` (API Tesouro Nacional).  
+- **Filtros utilizados:**  
+  - **`id_ente`**: Código IBGE do estado (ex: 33 = Rio de Janeiro);
+  - **`an_referencia`**: Ano de referência (2019 até o atual);
+  - **`me_referencia`**: Mês (1 a 12);
+  - **`co_tipo_matriz`**: `MSCC` (matriz mensal agregada);
+  - **`classe_conta`**: 6 (Execução Orçamentária);
+  - **`id_tv`**: `period_change` (movimento do período).
 
-
-O script em R percorre automaticamente:
-- Todos os anos de 2019 até o ano atual;
-- Todos os 12 meses do ano, organizado em **6 bimestres**;
-- Todos os 27 entes federativos (estados + Distrito Federal).
+### **Produção Científica (OpenAlex)**
+- **Endpoint:** `works` e `institutions`.  
+- **Filtros utilizados:**  
+  - **Instituições:** Top 57 universidades do Brasil (CWUR).  
+  - **Tipo de publicação:** `type_crossref=journal-article`.  
+  - **Período:** 2019 até o ano atual.  
+  - **Outros filtros:** `is_paratext=false`, `primary_location.source.type=journal`.  
 
 ---
 
 ## Uso do Script R no Power BI
 
-O projeto usa o script `DoFile_MSC_Ciencia_Tecnologia_All.R` para:
-- Baixar e organizar os dados da Função 19 diretamente da API SICONFI;
-- Criar uma coluna de **bimestres (1 a 6)** a partir dos meses de referência;
-- Gerar um arquivo CSV (`dados_ciencia_tecnologia_bimestre_2015_hoje.csv`) pronto para importação no Power BI.
+O projeto utiliza dois scripts principais:
+- **`DoFile_MSC_Ciencia_Tecnologia_All.R`**  
+  Para extrair e organizar dados de execução orçamentária.
+- **`DoFile_OpenAlex_Artigos.R`**  
+  Para extrair e consolidar o número de artigos científicos por universidade, estado e ano.
 
-**Vantagem:** o script busca os dados mais atualizados sempre que executado.  
-**Observação:** a coleta pode demorar devido ao limite da API (1 requisição por segundo).
+Ambos os scripts geram arquivos `.csv` prontos para importação no Power BI:
+- `dados_ciencia_tecnologia_bimestre_2019_hoje.csv`
+- `top50_universidades_ano_estado.csv` (com dados de artigos científicos).
 
 ---
 
 ## Alternativa Rápida: CSV Pré-Gerado
 
-Para maior agilidade, o repositório inclui um arquivo `.csv` com os dados já processados, atualizado até a última execução do script.
+O repositório inclui arquivos `.csv` pré-processados:
+- **Despesas:** `dados_ciencia_tecnologia_bimestre_2019_hoje.csv`
+- **Artigos Científicos:** `top50_universidades_ano_estado.csv`
 
-### Caminho:
-- **Obter Dados > Texto/CSV** no Power BI, ou  
-- **Script R:**  
-  ```r
-  read.csv("dados/dados_ciencia_tecnologia_bimestre_2015_hoje.csv")
+Esses arquivos permitem carregar rapidamente os dados no Power BI via **Obter Dados > Texto/CSV**.
+
+## Estrutura do Projeto
+
+```text
+POWERBI-CIENCIA-TECNOLOGIA-SICONFI/
+│
+├── data/                     # Dados processados
+│   ├── ciencia_tec_bi_2019_atual.csv
+│   ├── estados.csv
+│   ├── top50_universidades_ano_estado.csv
+│
+├── docs/                     # Documentação e captura de tela
+│   ├── api-reference.md
+│   ├── data-dictionary.md
+│   └── demo.png
+│
+├── src/                      # Scripts R
+│   ├── DoFile_MSC_Ciencia_Tecnologia.R
+│   └── DoFile_OpenAlex_Artigos.R
+│
+├── .gitignore
+├── README.md
+└── Dashboard_Ciencia_Tecnologia.pbix  # Arquivo Power BI
+```

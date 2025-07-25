@@ -113,6 +113,6 @@ df_ciencia_bimestre <- df_ciencia %>%
 df_ciencia_bimestre
 
 # Exportar para CSV
-# out_file <- "C:/Users/artde/Downloads/dados_ciencia_tecnologia_bimestre_2015_hoje.csv"
+# out_file <- "~/ciencia_tec_bi_2019_atual.csv"
 # write.csv(df_ciencia_bimestre, out_file, row.names = FALSE)
 # cat("Arquivo CSV gerado em:", out_file, "\n")
