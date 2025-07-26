@@ -55,12 +55,12 @@ O painel permite:
 
 O projeto utiliza dois scripts principais:
 - **`DoFile_MSC_Ciencia_Tecnologia_All.R`**  
-  Para extrair e organizar dados de execução orçamentária.
+  Para extrair e organizar dados de execução orçamentária. A tabela resultante já é processada e estruturada para revelar o gasto total por bimestre de cada ano, para cada UF e especificamente na função 19 do MTO.
 - **`DoFile_OpenAlex_Artigos.R`**  
   Para extrair e consolidar o número de artigos científicos por universidade, estado e ano.
 
 Ambos os scripts geram arquivos `.csv` prontos para importação no Power BI:
-- `dados_ciencia_tecnologia_bimestre_2019_hoje.csv`
+- `ciencia_tec_bi_2019_atual.csv` (com gastos totais por bimestre, por ente e por ano, na função 19 do MTO)
 - `top50_universidades_ano_estado.csv` (com dados de artigos científicos).
 
 ---
@@ -68,7 +68,7 @@ Ambos os scripts geram arquivos `.csv` prontos para importação no Power BI:
 ## Alternativa Rápida: CSV Pré-Gerado
 
 O repositório inclui arquivos `.csv` pré-processados:
-- **Despesas:** `dados_ciencia_tecnologia_bimestre_2019_hoje.csv`
+- **Despesas:** `ciencia_tec_bi_2019_atual.csv`
 - **Artigos Científicos:** `top50_universidades_ano_estado.csv`
 
 Esses arquivos permitem carregar rapidamente os dados no Power BI via **Obter Dados > Texto/CSV**.
