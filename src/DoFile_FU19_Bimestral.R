@@ -19,7 +19,7 @@ ufs <- c(
   28, 35, 17
 )
 
-anos <- 2015:2025
+anos <- 2015:as.integer(format(Sys.Date(), "%Y"))
 bimestres <- 1:6
 tipo_demonstrativo <- "RREO"
 anexo <- "RREO-Anexo 02"
