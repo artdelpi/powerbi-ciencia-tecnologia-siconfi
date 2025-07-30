@@ -4,18 +4,29 @@ Este documento descreve as colunas, descrições e fontes usadas no projeto.
 
 ---
 
-## **1. Dataset: ciencia_tec_bi_2019_atual.csv**
+## **1. Dataset: ciencia_tec_liquidadas_bimestrais.csv**
 
-**Fonte:** API SICONFI – MSC Orçamentária.  
-**Descrição:** Contém informações de execução orçamentária da Função 19 (Ciência e Tecnologia) por estado e bimestre.
+**Fonte:** API SICONFI – RREO (Relatório Resumido da Execução Orçamentária – Anexo 02).  
+**Descrição:** Contém informações de execução orçamentária da **Função 19 (Ciência e Tecnologia)** e suas subfunções, por estado e bimestre, considerando apenas **Despesas Liquidadas no Bimestre** e excluindo despesas intra-orçamentárias.
+
+**Filtros aplicados:**
+- **Coluna (`coluna`)**: `DESPESAS LIQUIDADAS NO BIMESTRE`
+- **Conta (`conta`)**: 
+  - `Ciência e Tecnologia`
+  - `Desenvolvimento Científico (571)`
+  - `Desenvolvimento Tecnológico e Engenharia (572)`
+  - `Difusão do Conhecimento Científico e Tecnológico (573)`
+  - `FU19 - Administração Geral`
+  - `FU19 - Demais Subfunções`
+- **Rotulo (`rotulo`)**: `Total das Despesas Exceto Intra-Orçamentárias`
 
 **Colunas:**
-- **`exercicio`**: Ano de referência (2019 até atual).
+- **`uf`**: Sigla da unidade federativa (ex: SP, RJ, MG).
+- **`cod_ibge`**: Código IBGE do estado.
+- **`ano`**: Ano de referência (2015 até o ano atual).
 - **`bimestre`**: Bimestre do ano (1 a 6).
-- **`uf`**: Código IBGE do estado.
-- **`funcao`**: Código da função orçamentária (19 = Ciência e Tecnologia).
-- **`nome_funcao`**: Nome da função orçamentária.
-- **`valor_total`**: Valor total das despesas em R$ (somatório do bimestre).
+- **`conta`**: Nome da função ou subfunção orçamentária (ex: Ciência e Tecnologia, Desenvolvimento Científico).
+- **`gasto_liquidado`**: Valor total liquidado no bimestre em R$.
 
 ---
 
@@ -27,7 +38,7 @@ Este documento descreve as colunas, descrições e fontes usadas no projeto.
 **Colunas:**
 - **`Universidade`**: Nome da instituição (ex: University of São Paulo).
 - **`Estado`**: UF associada à instituição (SP, RJ, MG, etc.).
-- **`Ano`**: Ano de publicação (2019 até atual).
+- **`Ano`**: Ano de publicação (2019 até o ano atual).
 - **`Artigos`**: Total de artigos de periódicos publicados no ano.
 
 ---
