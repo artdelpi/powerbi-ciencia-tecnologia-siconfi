@@ -1,16 +1,24 @@
 # Painel RREO – Ciência e Tecnologia (Função 19) e Produção Científica
 
 Este projeto disponibiliza um **dashboard interativo em Power BI** para análise das **despesas da Função 19 (Ciência e Tecnologia)**, obtidas diretamente da **API do Tesouro Transparente (SICONFI)** por meio do endpoint `rreo`.  
-Além disso, foram integrados **dados de produção científica** obtidos da **API OpenAlex**, possibilitando **correlacionar investimentos públicos com a produção acadêmica (número de artigos científicos) por estado e por ano**.
 
-O painel considera apenas as **despesas liquidadas**, com base no atributo **coluna = "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)"**, excluindo intra-orçamentárias. Foram filtradas apenas a **Função 19 - Ciência e Tecnologia** e as seguintes subfunções:
-**- 571 - Desenvolvimento Científico**
-**- 572 - Desenvolvimento Tecnológico e Engenharia**
-**- 573 - Difusão do Conhecimento Científico e Tecnológico**
-**- FU19 - Demais Subfunções**
-**- FU19 - Administração Geral**
+Além disso, foram integrados **dados de produção científica** obtidos da **API OpenAlex**, permitindo **correlacionar investimentos públicos com a produção acadêmica (número de artigos científicos) por estado e por ano**.
 
 ---
+
+## Escopo dos Dados
+
+- O painel considera apenas as **despesas liquidadas**, com base no atributo: `coluna = "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)"`.
+- **Despesas intra-orçamentárias foram excluídas.**
+- Foram filtradas apenas as **despesas da Função 19 - Ciência e Tecnologia** e as seguintes subfunções:
+  - **571 – Desenvolvimento Científico**
+  - **572 – Desenvolvimento Tecnológico e Engenharia**
+  - **573 – Difusão do Conhecimento Científico e Tecnológico**
+  - **FU19 – Demais Subfunções**
+  - **FU19 – Administração Geral**
+
+---
+
 
 <p align="center">
   <img src="docs/demo.png" alt="Visão geral do dashboard de Ciência e Tecnologia" width="600px">
