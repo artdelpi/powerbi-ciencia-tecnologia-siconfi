@@ -1,4 +1,4 @@
-# Painel RREO – Ciência e Tecnologia (Função 19) e Produção Científica
+# Painel RREO: Ciência e Tecnologia (Função 19) e Produção Científica
 
 Este projeto disponibiliza um **dashboard interativo em Power BI** para análise das **despesas da Função 19 (Ciência e Tecnologia)**, obtidas diretamente da **API do Tesouro Transparente (SICONFI)** por meio do endpoint `rreo`.  
 
@@ -8,14 +8,14 @@ Além disso, foram integrados **dados de produção científica** obtidos da **A
 
 ## Escopo dos Dados
 
-- O painel considera apenas as **despesas liquidadas**, com base no atributo: `coluna = "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)"`.
+- O painel considera apenas as **despesas liquidadas**, com base no atributo: `coluna = "DESPESAS LIQUIDADAS NO BIMESTRE"`.
 - **Despesas intra-orçamentárias foram excluídas.**
 - Foram filtradas apenas as **despesas da Função 19 - Ciência e Tecnologia** e as seguintes subfunções:
-  - **571 – Desenvolvimento Científico**
-  - **572 – Desenvolvimento Tecnológico e Engenharia**
-  - **573 – Difusão do Conhecimento Científico e Tecnológico**
-  - **FU19 – Demais Subfunções**
-  - **FU19 – Administração Geral**
+  - **571 - Desenvolvimento Científico**
+  - **572 - Desenvolvimento Tecnológico e Engenharia**
+  - **573 - Difusão do Conhecimento Científico e Tecnológico**
+  - **FU19 - Demais Subfunções**
+  - **FU19 - Administração Geral**
 
 ---
 
@@ -23,7 +23,7 @@ Além disso, foram integrados **dados de produção científica** obtidos da **A
 <p align="center">
   <img src="docs/demo.png" alt="Visão geral do dashboard de Ciência e Tecnologia" width="600px">
   <br>
-  <em>Figura 1 – Painel interativo em Power BI com dados de despesas liquidadas e produção científica por estado.</em>
+  <em>Figura 1 - Painel interativo em Power BI com dados de despesas liquidadas e produção científica por estado.</em>
 </p>
 
 ---
@@ -31,10 +31,10 @@ Além disso, foram integrados **dados de produção científica** obtidos da **A
 ## Destaques do Painel
 
 - **Ciência e Tecnologia:** análise exclusiva dos gastos públicos classificados como Função 19, conforme a Classificação Funcional do **MTO 2026**.  
-- **Produção Científica:** número de artigos publicados em periódicos (2019–Atual) das **Top 57 universidades brasileiras (CWUR)**.  
+- **Produção Científica:** número de artigos publicados em periódicos (2019-Atual) das **Top 57 universidades brasileiras (CWUR)**.  
 - **Comparativo entre Estados:** visualização e ranking de despesas e produção acadêmica.  
 - **Correlação Investimento × Produção:** análise dos dados orçamentários com a produção científica anual por estado.  
-- **Série Histórica (2018–Atual):** evolução dos indicadores em linha do tempo.  
+- **Série Histórica (2018-Atual):** evolução dos indicadores em linha do tempo.  
 - **Mapa Interativo:** visão geográfica das despesas, por estado, com **Ciência e Tecnologia** em **2025**.
 
 ---
@@ -49,7 +49,7 @@ Além disso, foram integrados **dados de produção científica** obtidos da **A
   - **`nr_periodo`**: Bimestre (1 a 6);
   - **`co_tipo_demonstrativo`**: RREO (Relatório Resumido Execução Orçamentária);
   - **`no_anexo`**: `RREO-Anexo 02`;
-  - **`coluna`**: `DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)`;
+  - **`coluna`**: `DESPESAS LIQUIDADAS NO BIMESTRE`;
   - **`rotulo`**: `Total das Despesas Exceto Intra-Orçamentárias`;
   - **`conta`**: Função 19 (Ciência e Tecnologia) e subfunções associadas.
 

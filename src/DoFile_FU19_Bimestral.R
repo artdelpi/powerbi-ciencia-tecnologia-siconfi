@@ -5,7 +5,7 @@
 #           de 2015 até o ano atual, consolidando por bimestre,
 #           filtrando Função 19 - Ciência e Tecnologia.
 # Fonte do mapeamento de funções:
-# Manual Técnico de Orçamento – MTO 2026 (SOF)
+# Manual Técnico de Orçamento - MTO 2026 (SOF)
 # https://www1.siop.planejamento.gov.br/mto/doku.php/mto2026
 # ============================================================
 
@@ -19,10 +19,15 @@ ufs <- c(
   28, 35, 17
 )
 
+# Define o período de coleta
 anos <- 2015:as.integer(format(Sys.Date(), "%Y"))
 bimestres <- 1:6
+
+# Params fixos de consulta
 tipo_demonstrativo <- "RREO"
 anexo <- "RREO-Anexo 02"
+
+# Lista de contas/subfunções associadas à Função 19
 contas <- c(
   "Ciência e Tecnologia",
   "Desenvolvimento Científico",
@@ -32,6 +37,7 @@ contas <- c(
   "FU19 - Demais Subfunções"
 )
 
+# Df para armazenar os resultados consolidados
 resultado <- data.frame(
   uf = character(),
   cod_ibge = integer(),
@@ -46,6 +52,7 @@ for (ano in anos) {
     for (id_ente in ufs) {
       cat("Ano:", ano, "| Bimestre:", bimestre, "| UF:", id_ente, "\n")
       
+      # Monta a URL da requisição à API
       url <- paste0(
         "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/rreo?",
         "an_exercicio=", ano,
@@ -58,10 +65,12 @@ for (ano in anos) {
       res <- GET(url)
       if (status_code(res) != 200) next
       
+      # Converte o conteúdo da resposta pra formato R
       dados <- fromJSON(content(res, as = "text", encoding = "UTF-8"))
       if (length(dados$items) == 0) next
       df <- as.data.frame(dados$items)
       
+       # Filtra somente as tuplas relevantes
       df_fun19 <- df %>%
         filter(
           coluna == "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)",
@@ -69,8 +78,10 @@ for (ano in anos) {
           conta %in% contas
         )
       
+       # Soma o valor das despesas liquidadas filtradas
       gasto <- sum(df_fun19$valor, na.rm = TRUE)
       
+      # Adiciona o resultado ao df consolidado
       resultado <- rbind(
         resultado,
         data.frame(
@@ -87,6 +98,7 @@ for (ano in anos) {
   }
 }
 
+# Exibe o dataframe resultante na saída do R
 resultado
 
 # Exportar para CSV
